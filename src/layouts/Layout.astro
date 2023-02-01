@@ -1,19 +1,21 @@
 ---
-export interface Props {
-	title: string;
-}
+import { SITE } from '../config';
+import BaseHead from '../components/BaseHead.astro';
 
-const { title } = Astro.props;
+export type Props = {
+  title: string;
+  description: string;
+  link: string;
+  image: string;
+};
+
+const {title, description, link, image} = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={SITE.lang}>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<BaseHead title={title} description={description} link={link} image={image} />
 	</head>
 	<body>
 		<slot />
